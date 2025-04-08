@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_91bbb351d5022d713a9a4b6eb74e2318 {
+                #map_0f5cfdb6f45bd2f6795bc29b43151119 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,18 +35,22 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_91bbb351d5022d713a9a4b6eb74e2318" ></div>
+            <div class="folium-map" id="map_0f5cfdb6f45bd2f6795bc29b43151119" ></div>
         
 </body>
 <script>
     
     
-            var map_91bbb351d5022d713a9a4b6eb74e2318 = L.map(
-                "map_91bbb351d5022d713a9a4b6eb74e2318",
+            var map_0f5cfdb6f45bd2f6795bc29b43151119 = L.map(
+                "map_0f5cfdb6f45bd2f6795bc29b43151119",
                 {
                     center: [48.845, 2.424],
                     crs: L.CRS.EPSG3857,
@@ -63,7 +67,7 @@
 
         
     
-            var tile_layer_c3e906abc8c30b6c60b7fb10d35f28c1 = L.tileLayer(
+            var tile_layer_a6f48e451cb29f542cfb2b547a1c5983 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -80,10 +84,10 @@
             );
         
     
-            tile_layer_c3e906abc8c30b6c60b7fb10d35f28c1.addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            tile_layer_a6f48e451cb29f542cfb2b547a1c5983.addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
         
     
-            var tile_layer_2e54b2b61c7da3658e24943db6b55113 = L.tileLayer(
+            var tile_layer_a8de00832fa7aa4c0784f9b1fa20da36 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -100,14 +104,14 @@
             );
         
     
-            tile_layer_2e54b2b61c7da3658e24943db6b55113.addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            tile_layer_a8de00832fa7aa4c0784f9b1fa20da36.addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
         
     
-            var tile_layer_262e7101fa85d2be880fdaed62af612c = L.tileLayer(
+            var tile_layer_f1562bb51ba6450feed0fc93e3ed1c64 = L.tileLayer(
                 "https://data.geopf.fr/wmts?\u0026REQUEST=GetTile\u0026SERVICE=WMTS\u0026VERSION=1.0.0\u0026STYLE=normal\u0026TILEMATRIXSET=PM\u0026FORMAT=image/jpeg\u0026LAYER=ORTHOIMAGERY.ORTHOPHOTOS\u0026TILEMATRIX={z}\u0026TILEROW={y}\u0026TILECOL={x}",
                 {
   "minZoom": 0,
-  "maxZoom": 18,
+  "maxZoom": 26,
   "maxNativeZoom": 18,
   "noWrap": false,
   "attribution": "IGN-F/G\u00e9oportail",
@@ -116,19 +120,36 @@
   "tms": false,
   "opacity": 1,
   "tileSize": 256,
+  "visible": false,
 }
 
             );
         
     
-            tile_layer_262e7101fa85d2be880fdaed62af612c.addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            var tile_layer_097d931d14a3db8b04aaf9742d2a925c = L.tileLayer(
+                "http://mt0.google.com/vt/lyrs=s\u0026hl=en\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 26,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "Google Satellite",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+  "tileSize": 256,
+  "visible": false,
+}
+
+            );
         
     
-            var tile_layer_44639d797c4473d19466df1394e2e7dd = L.tileLayer(
+            var tile_layer_e91ab5bbede93c8d2931b6db90d30bb4 = L.tileLayer(
                 "https://data.geopf.fr/wmts?\u0026REQUEST=GetTile\u0026SERVICE=WMTS\u0026VERSION=1.0.0\u0026STYLE=normal\u0026LAYER=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW\u0026FORMAT=image/png\u0026TILEMATRIXSET=PM_0_18\u0026TILEMATRIX={z}\u0026TILEROW={y}\u0026TILECOL={x}",
                 {
   "minZoom": 0,
-  "maxZoom": 18,
+  "maxZoom": 26,
   "maxNativeZoom": 18,
   "noWrap": false,
   "attribution": "IGNF Lidar HD",
@@ -137,19 +158,20 @@
   "tms": false,
   "opacity": 1,
   "tileSize": 256,
+  "visible": false,
 }
 
             );
         
     
-            tile_layer_44639d797c4473d19466df1394e2e7dd.addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            tile_layer_e91ab5bbede93c8d2931b6db90d30bb4.addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
         
     
-            var tile_layer_ddff9d4369a3ec233df967f7cc8796c6 = L.tileLayer(
+            var tile_layer_12d524d1551541b2204c10b0fef3d78a = L.tileLayer(
                 "https://data.geopf.fr/wmts?\u0026REQUEST=GetTile\u0026SERVICE=WMTS\u0026VERSION=1.0.0\u0026STYLE=normal\u0026LAYER=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW\u0026FORMAT=image/png\u0026TILEMATRIXSET=PM_0_18\u0026TILEMATRIX={z}\u0026TILEROW={y}\u0026TILECOL={x}",
                 {
   "minZoom": 0,
-  "maxZoom": 18,
+  "maxZoom": 26,
   "maxNativeZoom": 18,
   "noWrap": false,
   "attribution": "IGNF Lidar HD MNS",
@@ -158,34 +180,97 @@
   "tms": false,
   "opacity": 1,
   "tileSize": 256,
+  "visible": false,
 }
 
             );
         
     
-            tile_layer_ddff9d4369a3ec233df967f7cc8796c6.addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            tile_layer_12d524d1551541b2204c10b0fef3d78a.addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
         
     
-            var layer_control_e843f5cfea9f2b4f88f49bd8aad1a65e_layers = {
+            var tile_layer_aa6a36e5b1f6d87ab8a334bc87041bd9 = L.tileLayer(
+                "https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 26,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "OpenRailwayMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+  "tileSize": 256,
+  "visible": true,
+}
+
+            );
+        
+    
+            var layer_control_c31fa9fada0d03fdbed8524d1b4cd790_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_2e54b2b61c7da3658e24943db6b55113,
-                    "IGN Orthophoto" : tile_layer_262e7101fa85d2be880fdaed62af612c,
-                    "Lidar HD MNT" : tile_layer_44639d797c4473d19466df1394e2e7dd,
-                    "MNS LiDAR HD" : tile_layer_ddff9d4369a3ec233df967f7cc8796c6,
+                    "openstreetmap" : tile_layer_a8de00832fa7aa4c0784f9b1fa20da36,
                 },
                 overlays :  {
+                    "IGN Orthophoto" : tile_layer_f1562bb51ba6450feed0fc93e3ed1c64,
+                    "Google Satellite" : tile_layer_097d931d14a3db8b04aaf9742d2a925c,
+                    "MNT LiDAR HD" : tile_layer_e91ab5bbede93c8d2931b6db90d30bb4,
+                    "MNS LiDAR HD" : tile_layer_12d524d1551541b2204c10b0fef3d78a,
+                    "OpenRailwayMap" : tile_layer_aa6a36e5b1f6d87ab8a334bc87041bd9,
                 },
             };
-            let layer_control_e843f5cfea9f2b4f88f49bd8aad1a65e = L.control.layers(
-                layer_control_e843f5cfea9f2b4f88f49bd8aad1a65e_layers.base_layers,
-                layer_control_e843f5cfea9f2b4f88f49bd8aad1a65e_layers.overlays,
+            let layer_control_c31fa9fada0d03fdbed8524d1b4cd790 = L.control.layers(
+                layer_control_c31fa9fada0d03fdbed8524d1b4cd790_layers.base_layers,
+                layer_control_c31fa9fada0d03fdbed8524d1b4cd790_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_91bbb351d5022d713a9a4b6eb74e2318);
+            ).addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
 
+        
+    
+            var tile_layer_8d6a150a3b29708b973b328b61cc5780 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_72721fe99c4727c148b1f5f5063bac70 = new L.Control.MiniMap(
+                tile_layer_8d6a150a3b29708b973b328b61cc5780,
+                {
+  "position": "bottomleft",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": false,
+  "autoToggleDisplay": false,
+  "minimized": false,
+  "location": [
+48.845,
+2.424,
+],
+  "tiles": "OpenStreetMap",
+  "controlOrientation": "vertical",
+  "collapsed": false,
+  "zoomStart": 10,
+}
+            );
+            map_0f5cfdb6f45bd2f6795bc29b43151119.addControl(mini_map_72721fe99c4727c148b1f5f5063bac70);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_0f5cfdb6f45bd2f6795bc29b43151119);
         
 </script>
 </html>
