@@ -1,5 +1,5 @@
 from folium import Map, LayerControl, TileLayer
-from folium.plugins import MiniMap, Fullscreen, DualMap, Geocoder
+from folium.plugins import MiniMap, Fullscreen, DualMap, Geocoder, LocateControl, Draw
 
 
 class MapFoliumCustom:
@@ -56,6 +56,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_geocoder())
         # Add fullscreen button to the map
         self.add_layer(self.get_full_screen())
+        # Add locate control to the map
+        self.add_layer(self.get_locate_control())
+        # Add draw control to the map
+        self.add_layer(self.get_draw_control())
 
         return self.map
 
@@ -110,6 +114,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_geocoder())
         # Add fullscreen button to the map
         self.add_layer(self.get_full_screen())
+        # Add locate control to the map
+        self.add_layer(self.get_locate_control())
+        # Add draw control to the map
+        self.add_layer(self.get_draw_control())
 
         return self.map
 
@@ -144,6 +152,12 @@ class MapFoliumCustom:
 
     def get_full_screen(self):
         return Fullscreen()
+
+    def get_locate_control(self):
+        return LocateControl(auto_start=True, position="bottomleft")
+
+    def get_draw_control(self):
+        return Draw(export=True, position="topleft", show_geometry_on_click=False)
 
     def get_openstreetmap_layer(self):
         return TileLayer("OpenStreetMap", max_zoom=self.max_zoom, show=False)
