@@ -45,13 +45,13 @@ class MapFoliumCustom:
         self.add_layer(self.get_ign_mns_layer())
         # ----------------------------------------------------
         # Add OpenRailwayMap
-        self.add_layer(self.get_openrailwaymap_layer())
+        self.add_layer(self.get_openrailwaymap_layer(show=True))
         # Add WaymarkedTrails
         self.add_layer(self.get_waymarkedtrails_layer())
         # Add layer control to the map
         self.add_layer(LayerControl())
         # Add minimap to the map
-        self.add_layer(self.get_minimap())
+        self.add_layer(self.get_minimap(minimized=True))
         # Add geocoder to the map
         self.add_layer(self.get_geocoder())
         # Add fullscreen button to the map
@@ -105,7 +105,7 @@ class MapFoliumCustom:
         # Add layer control to the map
         self.add_layer(LayerControl())
         # Add minimap to the map
-        self.add_layer(self.get_minimap())
+        self.add_layer(self.get_minimap(minimized=True))
         # Add geocoder to the map
         self.add_layer(self.get_geocoder())
         # Add fullscreen button to the map
@@ -125,7 +125,7 @@ class MapFoliumCustom:
     def add_layer_m2(self, layer):
         layer.add_to(self.map.m2)
 
-    def get_minimap(self):
+    def get_minimap(self, minimized: bool = False):
         minimap = MiniMap(
             location=self.initial_location,
             tiles="OpenStreetMap",
@@ -133,8 +133,8 @@ class MapFoliumCustom:
             zoom_start=self.initial_zoom,
             position="bottomleft",
             toggle_display=True,
-            auto_toggle_display=True,
-            minimized=False,
+            auto_toggle_display=False,
+            minimized=minimized,
         )
 
         return minimap
@@ -146,7 +146,7 @@ class MapFoliumCustom:
         return Fullscreen()
 
     def get_openstreetmap_layer(self):
-        return TileLayer("OpenStreetMap", max_zoom=self.max_zoom)
+        return TileLayer("OpenStreetMap", max_zoom=self.max_zoom, show=False)
 
     def get_esri_layer(self):
         return TileLayer(
@@ -215,7 +215,7 @@ class MapFoliumCustom:
             visible=False,
             overlay=False,
             control=True,
-            show=False,
+            show=True,  # Set this layer as the default visible layer
         )
         return layer_google_hybrid
 
@@ -384,7 +384,7 @@ class MapFoliumCustom:
         )
         return layer_mns
 
-    def get_openrailwaymap_layer(self):
+    def get_openrailwaymap_layer(self, show: bool = False):
         # Add OpenRailwayMap layer
         layer_openrailwaymap = TileLayer(
             "https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
@@ -397,7 +397,7 @@ class MapFoliumCustom:
             visible=True,
             overlay=True,
             control=True,
-            show=False,
+            show=show,  # Show by default
         )
         return layer_openrailwaymap
 
