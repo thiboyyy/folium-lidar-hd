@@ -59,7 +59,7 @@ class MapFoliumCustom:
         # Add locate control to the map
         self.add_layer(self.get_locate_control())
         # Add draw control to the map
-        self.add_layer(self.get_draw_control())
+        # self.add_layer(self.get_draw_control())
 
         return self.map
 
@@ -117,7 +117,7 @@ class MapFoliumCustom:
         # Add locate control to the map
         self.add_layer(self.get_locate_control())
         # Add draw control to the map
-        self.add_layer(self.get_draw_control())
+        # self.add_layer(self.get_draw_control())
 
         return self.map
 
