@@ -1,5 +1,6 @@
 from io import BytesIO
-from map_custom import MapFoliumCustom, LayerCatalog
+from map_custom import MapFoliumCustom
+from layer_catalog import LayerCatalog
 from shapely.geometry import Polygon
 from streamlit_folium import st_folium
 import contextily as ctx
