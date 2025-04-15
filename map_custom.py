@@ -2,14 +2,82 @@ from folium import Map, LayerControl, TileLayer
 from folium.plugins import MiniMap, Fullscreen, DualMap, Geocoder, LocateControl, Draw
 
 
-class MapFoliumCustom:
+class LayerCatalog:
     def __init__(self):
+        self.layers = {
+            "OpenStreetMap": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "OpenRailwayMap": "https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+            "OpenTopoMap": "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+            "Google Satellite": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+            "Google Hybrid": "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+            "Google Pentes": "https://mt1.google.com/vt/lyrs=t&x={x}&y={y}&z={z}",
+            "Google Terrain": "https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+            "Google Roadmap": "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+            "IGN Orthophoto": (
+                "https://data.geopf.fr/wmts?"
+                "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0"
+                "&STYLE=normal"
+                "&TILEMATRIXSET=PM"
+                "&FORMAT=image/jpeg"
+                "&LAYER=ORTHOIMAGERY.ORTHOPHOTOS"
+                "&TILEMATRIX={z}"
+                "&TILEROW={y}"
+                "&TILECOL={x}"
+            ),
+            "IGN MNT": (
+                "https://data.geopf.fr/wmts?"
+                "&REQUEST=GetTile"
+                "&SERVICE=WMTS"
+                "&VERSION=1.0.0"
+                "&STYLE=normal"
+                "&LAYER=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW"
+                "&FORMAT=image/png"
+                "&TILEMATRIXSET=PM_0_18"
+                "&TILEMATRIX={z}"
+                "&TILEROW={y}"
+                "&TILECOL={x}"
+            ),
+            "OpenCycleMap": "https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
+            "CyclOSM": "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+            "IGN MNS": (
+                "https://data.geopf.fr/wmts?"
+                "&REQUEST=GetTile"
+                "&SERVICE=WMTS"
+                "&VERSION=1.0.0"
+                "&STYLE=normal"
+                "&LAYER=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW"
+                "&FORMAT=image/png"
+                "&TILEMATRIXSET=PM_0_18"
+                "&TILEMATRIX={z}"
+                "&TILEROW={y}"
+                "&TILECOL={x}"
+            ),
+            "OpenRailwayMap": "https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+            "WayMarkedTrails": "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
+            "WindyTouristMap": "https://windytiles.mapy.cz/turist-m/{z}-{x}-{y}.png",
+            "IGN Topo": "https://data.geopf.fr/private/wmts?apikey=ign_scan_ws&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image%2Fjpeg",
+        }
+
+    def get_layers(self):
+        return self.layers
+
+    def get_layer_names(self):
+        return sorted(list(self.layers.keys()))
+
+    def get_layer(self, layer_name):
+        return self.layers.get(layer_name)
+
+
+class MapFoliumCustom:
+    def __init__(self, add_draw_control=False):
         self.max_zoom = 26
         self.initial_location = [47, 2.5]
         self.initial_zoom = 6
-        self.map = self.create_map()
+        self.layer_catalog = LayerCatalog()
+        self.map = self.create_map(add_draw_control)
 
-    def create_map(self):
+    def create_map(self, add_draw_control=False):
+        # Create a map object centered at a specific latitude and longitude with a zoom level
         # Define the maximum zoom level
         # Create a map object centered at a specific latitude and longitude with a zoom level
         # Initial location on middle of France
@@ -59,11 +127,12 @@ class MapFoliumCustom:
         # Add locate control to the map
         self.add_layer(self.get_locate_control())
         # Add draw control to the map
-        # self.add_layer(self.get_draw_control())
+        if add_draw_control:
+            self.add_layer(self.get_draw_control())
 
         return self.map
 
-    def create_dual_map(self):
+    def create_dual_map(self, add_draw_control=False):
         self.map = DualMap(
             location=self.initial_location,
             zoom_start=self.initial_zoom,
@@ -117,7 +186,8 @@ class MapFoliumCustom:
         # Add locate control to the map
         self.add_layer(self.get_locate_control())
         # Add draw control to the map
-        # self.add_layer(self.get_draw_control())
+        if add_draw_control:
+            self.add_layer(self.get_draw_control())
 
         return self.map
 
@@ -175,17 +245,7 @@ class MapFoliumCustom:
 
     def get_ign_orthophoto_layer(self):
         # Add WMTS Layer for IGN orthophoto
-        wmts_url = (
-            "https://data.geopf.fr/wmts?"
-            "&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0"
-            "&STYLE=normal"
-            "&TILEMATRIXSET=PM"
-            "&FORMAT=image/jpeg"
-            "&LAYER=ORTHOIMAGERY.ORTHOPHOTOS"
-            "&TILEMATRIX={z}"
-            "&TILEROW={y}"
-            "&TILECOL={x}"
-        )
+        wmts_url = self.layer_catalog.get_layer("IGN Orthophoto")
 
         layer_ortho = TileLayer(
             wmts_url,
@@ -205,8 +265,9 @@ class MapFoliumCustom:
 
     def get_google_terrain_layer(self):
         # Add Google Terrain layer
+        layer_url = self.layer_catalog.get_layer("Google Terrain")
         layer_google_terrain = TileLayer(
-            "https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+            tiles=layer_url,
             attr="Google",
             min_zoom=0,
             max_zoom=self.max_zoom,
@@ -220,8 +281,9 @@ class MapFoliumCustom:
 
     def get_google_hybrid_layer(self):
         # Add Google Hybrid layer
+        layer_url = self.layer_catalog.get_layer("Google Hybrid")
         layer_google_hybrid = TileLayer(
-            "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+            tiles=layer_url,
             attr="Google",
             min_zoom=0,
             max_zoom=self.max_zoom,
@@ -235,8 +297,9 @@ class MapFoliumCustom:
 
     def get_google_road_layer(self):
         # Add Google Road layer
+        layer_url = self.layer_catalog.get_layer("Google Road")
         layer_google_road = TileLayer(
-            "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+            tiles=layer_url,
             attr="Google",
             min_zoom=0,
             max_zoom=self.max_zoom,
@@ -250,9 +313,10 @@ class MapFoliumCustom:
 
     def get_google_satellite_layer(self):
 
-        # Add Google Satellite layer
+        # Add Google Satellite
+        layer_url = self.layer_catalog.get_layer("Google Satellite")
         layer_google_satellite = TileLayer(
-            "http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}",
+            tiles=layer_url,
             attr="Google",
             min_zoom=0,
             max_native_zoom=20,
@@ -267,10 +331,9 @@ class MapFoliumCustom:
 
         return layer_google_satellite
 
-    def get_ign_topo_layer(self, show: bool = False, api_key: str = "ign_scan_ws"):
-
-        url_topo = f"https://data.geopf.fr/private/wmts?apikey={api_key}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={{z}}&TILEROW={{y}}&TILECOL={{x}}&FORMAT=image%2Fjpeg"
-
+    def get_ign_topo_layer(self, show: bool = False):
+        # Add IGN Topo layer
+        url_topo = self.layer_catalog.get_layer("IGN Topo")
         layer_topo25 = TileLayer(
             url_topo,
             attr="IGN",
@@ -291,19 +354,7 @@ class MapFoliumCustom:
 
         # Add LiDAR HD MNT layer using the constructed LiDAR URL
 
-        lidar_url = (
-            "https://data.geopf.fr/wmts?"
-            "&REQUEST=GetTile"
-            "&SERVICE=WMTS"
-            "&VERSION=1.0.0"
-            "&STYLE=normal"
-            "&LAYER=IGNF_LIDAR-HD_MNT_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW"
-            "&FORMAT=image/png"
-            "&TILEMATRIXSET=PM_0_18"
-            "&TILEMATRIX={z}"
-            "&TILEROW={y}"
-            "&TILECOL={x}"
-        )
+        lidar_url = self.layer_catalog.get_layer("IGN MNT")
 
         layer_lidar_mnt = TileLayer(
             lidar_url,
@@ -324,11 +375,13 @@ class MapFoliumCustom:
     def get_opentopomap_layer(self):
         # This layer is not working well
         # Add OpenTopoMap layer
+        layer_url = self.layer_catalog.get_layer("OpenTopoMap")
         layer_opentopomap = TileLayer(
-            "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+            layer_url,
             attr="OpenTopoMap",
             min_zoom=0,
             max_zoom=self.max_zoom,
+            max_native_zoom=16,
             name="OpenTopoMap",
             visible=False,
             overlay=False,
@@ -339,8 +392,9 @@ class MapFoliumCustom:
 
     def get_opencyclemap_layer(self):
         # Add OpenCycleMap layer
+        layer_url = self.layer_catalog.get_layer("OpenCycleMap")
         layer_opencyclemap = TileLayer(
-            "https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
+            layer_url,
             attr="OpenCycleMap",
             min_zoom=0,
             max_zoom=self.max_zoom,
@@ -354,8 +408,9 @@ class MapFoliumCustom:
 
     def get_cyclosm_layer(self):
         # Add CyclOSM layer
+        layer_url = self.layer_catalog.get_layer("CyclOSM")
         layer_cyclosm = TileLayer(
-            "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+            layer_url,
             attr="CyclOSM",
             min_zoom=0,
             max_zoom=self.max_zoom,
@@ -369,22 +424,10 @@ class MapFoliumCustom:
 
     def get_ign_mns_layer(self):
 
-        # Add MNS LiDAR HD layer using the constructed MNS URL
-        mns_url = (
-            "https://data.geopf.fr/wmts?"
-            "&REQUEST=GetTile"
-            "&SERVICE=WMTS"
-            "&VERSION=1.0.0"
-            "&STYLE=normal"
-            "&LAYER=IGNF_LIDAR-HD_MNS_ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW"
-            "&FORMAT=image/png"
-            "&TILEMATRIXSET=PM_0_18"
-            "&TILEMATRIX={z}"
-            "&TILEROW={y}"
-            "&TILECOL={x}"
-        )
+        layer_url = self.layer_catalog.get_layer("IGN MNS")
+
         layer_mns = TileLayer(
-            mns_url,
+            layer_url,
             attr="IGN",
             min_zoom=0,
             max_native_zoom=18,
@@ -399,9 +442,10 @@ class MapFoliumCustom:
         return layer_mns
 
     def get_openrailwaymap_layer(self, show: bool = False):
+        layer_url = self.layer_catalog.get_layer("OpenRailwayMap")
         # Add OpenRailwayMap layer
         layer_openrailwaymap = TileLayer(
-            "https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+            layer_url,
             attr="OpenRailwayMap",
             min_zoom=0,
             max_native_zoom=18,
@@ -417,8 +461,9 @@ class MapFoliumCustom:
 
     def get_waymarkedtrails_layer(self):
         # Add Waymarked Trails layer
+        layer_url = self.layer_catalog.get_layer("WayMarkedTrails")
         layer_waymarkedtrails = TileLayer(
-            "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
+            layer_url,
             attr="Waymarked Trails",
             min_zoom=0,
             max_native_zoom=18,
@@ -434,8 +479,9 @@ class MapFoliumCustom:
 
     def get_windy_tourist_layer(self):
         # Add Windy layer
+        layer_url = self.layer_catalog.get_layer("WindyTouristMap")
         layer_windy = TileLayer(
-            "https://windytiles.mapy.cz/turist-m/{z}-{x}-{y}.png",
+            layer_url,
             attr="Windy",
             min_zoom=0,
             max_native_zoom=18,
