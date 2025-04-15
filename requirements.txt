@@ -3,3 +3,6 @@ contextily
 matplotlib
 streamlit
 streamlit_folium
+shapely
+geopandas
+
