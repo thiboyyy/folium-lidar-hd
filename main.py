@@ -11,7 +11,8 @@ import streamlit as st
 
 if __name__ == "__main__":
     st.set_page_config(layout="wide")
-    st.title("Folium LiDAR HD")
+    st.title("Download Tiles to PNG")
+    st.write("Draw a rectangle on the map to download the tiles to PNG image")
     m = MapFoliumCustom(add_draw_control=True).get_map()
 
     # call to render Folium map in Streamlit
@@ -51,7 +52,8 @@ if __name__ == "__main__":
             min_lon, min_lat, max_lon, max_lat = bbox
             w, s, e, n = min_lon, min_lat, max_lon, max_lat
 
-            zoom_level = st.slider("Zoom level", 0, 26, current_zoom)
+            # st.write("Current zoom level:", current_zoom)
+            zoom_level = st.slider("Zoom level", 0, 27, current_zoom)
             st.write("Zoom level selected:", zoom_level)
 
             layer_catalog = LayerCatalog()
@@ -64,9 +66,9 @@ if __name__ == "__main__":
             ll = True
             n_connections = 10
 
-            button_download = st.button("Download image")
+            button_download = st.button("Generate Download Link")
             if button_download:
-                st.write("Downloading image...")
+                st.write("Downloading tiles ...")
 
                 # Get the tiles using contextily
                 img, extent = ctx.bounds2img(
@@ -88,7 +90,7 @@ if __name__ == "__main__":
                 # Get the bytes from the BinaryIO object, and create a download button
                 img_bytes = img_io.getvalue()
                 st.download_button(
-                    label="Download image",
+                    label="Download image as PNG",
                     data=img_bytes,
                     file_name="geo.png",
                     mime="image/png",
