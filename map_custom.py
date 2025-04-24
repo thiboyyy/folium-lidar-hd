@@ -21,6 +21,12 @@ class MapFoliumCustom:
         self.add_layer(self.get_openstreetmap_layer())
         # Add IGN orthophoto as a base map
         self.add_layer(self.get_ign_orthophoto_layer())
+        # Add IGN orthophoto as a base map
+        self.add_layer(self.get_ign_orthohighres_layer())
+        # Add IGN orthophoto as a base map
+        self.add_layer(self.get_ign_orthohistoric_layer())
+        # Add IGN orthophoto as a base map
+        # self.add_layer(self.get_ign_pcrs_layer())
         # Add ESRI World Imagery as a base map
         self.add_layer(self.get_esri_layer())
         # Add Google Satellite as a base map
@@ -78,6 +84,12 @@ class MapFoliumCustom:
         self.add_layer(self.get_openstreetmap_layer())
         # Add IGN orthophoto as a base map
         self.add_layer(self.get_ign_orthophoto_layer())
+        # Add IGN orthophoto as a base map
+        self.add_layer(self.get_ign_orthohighres_layer())
+        # Add IGN orthophoto as a base map
+        self.add_layer(self.get_ign_orthohistoric_layer())
+        # Add IGN orthophoto as a base map
+        # self.add_layer(self.get_ign_pcrs_layer())
         # Add ESRI World Imagery as a base map
         self.add_layer(self.get_esri_layer())
         # Add Google Satellite as a base map
@@ -232,7 +244,7 @@ class MapFoliumCustom:
 
     def get_google_road_layer(self):
         # Add Google Road layer
-        layer_url = self.layer_catalog.get_layer("Google Road")
+        layer_url = self.layer_catalog.get_layer("Google Roadmap")
         layer_google_road = TileLayer(
             tiles=layer_url,
             attr="Google",
@@ -265,6 +277,57 @@ class MapFoliumCustom:
         )
 
         return layer_google_satellite
+
+    def get_ign_pcrs_layer(self):
+        layer_url = self.layer_catalog.get_layer("IGN_PCRS")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=22,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_PCRS",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
+
+    def get_ign_orthohighres_layer(self):
+        layer_url = self.layer_catalog.get_layer("IGN_OrthosHighRes")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=21,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_OrthosHighRes",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
+
+    def get_ign_orthohistoric_layer(self):
+        layer_url = self.layer_catalog.get_layer("IGN_OrthoHistorique")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=18,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_OrthoHistorique",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
 
     def get_ign_topo_layer(self, show: bool = False):
         # Add IGN Topo layer

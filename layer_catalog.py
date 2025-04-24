@@ -52,9 +52,9 @@ class LayerCatalog:
             "WayMarkedTrails": "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
             "WindyTouristMap": "https://windytiles.mapy.cz/turist-m/{z}-{x}-{y}.png",
             "IGN Topo": "https://data.geopf.fr/private/wmts?apikey=ign_scan_ws&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image%2Fjpeg",
-            "IGN_PCRS" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=PCRS.LAMB93&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=2154_5cm_6_22&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
-            "IGN_OrthosHighRes" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=THR.ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=PM_6_21&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
-            "IGN_OrthoHistorique" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS.1950-1965&STYLE=BDORTHOHISTORIQUE&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_18&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
+            "IGN_PCRS": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=PCRS.LAMB93&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=2154_5cm_6_22&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN_OrthosHighRes": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=THR.ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=PM_6_21&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN_OrthoHistorique": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS.1950-1965&STYLE=BDORTHOHISTORIQUE&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_18&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
         }
 
     def get_layers(self):
@@ -64,4 +64,7 @@ class LayerCatalog:
         return sorted(list(self.layers.keys()))
 
     def get_layer(self, layer_name):
-        return self.layers.get(layer_name)
+        layer = self.layers.get(layer_name)
+        if layer is None:
+            raise ValueError(f"Layer {layer_name} not found in catalog")
+        return layer
