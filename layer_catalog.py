@@ -52,6 +52,9 @@ class LayerCatalog:
             "WayMarkedTrails": "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
             "WindyTouristMap": "https://windytiles.mapy.cz/turist-m/{z}-{x}-{y}.png",
             "IGN Topo": "https://data.geopf.fr/private/wmts?apikey=ign_scan_ws&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image%2Fjpeg",
+            "IGN_PCRS" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=PCRS.LAMB93&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=2154_5cm_6_22&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
+            "IGN_OrthosHighRes" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=THR.ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=PM_6_21&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
+            "IGN_OrthoHistorique" : 'https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS.1950-1965&STYLE=BDORTHOHISTORIQUE&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_18&TILEMATRIX={z}&TILEROW={x}&TILECOL={y}', 
         }
 
     def get_layers(self):
