@@ -56,6 +56,9 @@ class LayerCatalog:
             "IGN_PCRS": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=PCRS.LAMB93&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=2154_5cm_6_22&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
             "IGN_OrthosHighRes": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=THR.ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=PM_6_21&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
             "IGN_OrthoHistorique": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS.1950-1965&STYLE=BDORTHOHISTORIQUE&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_18&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN_ES": "https://www.ign.es/wmts/mapa-raster?layer=MTN&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/jpeg&TileMatrix={z}&TileCol={x}&TileRow={y}",
+            "IGN_ES_LIDAR": "https://wmts-mapa-lidar.idee.es/lidar?Version=1.0.0&layer=EL.GridCoverageDSM&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Format=image/png&TileMatrix={z}&TileCol={x}&TileRow={y}",
+            "IGN_ES_Ortho": "https://www.ign.es/wmts/pnoa-ma?layer=OI.OrthoimageCoverage&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/jpeg&TileMatrix={z}&TileCol={x}&TileRow={y}",
         }
 
     def get_layers(self):

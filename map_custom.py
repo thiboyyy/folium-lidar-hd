@@ -54,6 +54,12 @@ class MapFoliumCustom:
         self.add_layer(self.get_ign_mns_layer())
         # Add MapantFR
         self.add_layer(self.get_mapant_layer())
+        # Add IGNE
+        self.add_layer(self.get_igne())
+        # Add IGNEL
+        self.add_layer(self.get_ignel())
+        # Add IGNEO
+        self.add_layer(self.get_igneo())
         # ----------------------------------------------------
         # Add OpenRailwayMap
         self.add_layer(self.get_openrailwaymap_layer(show=True))
@@ -112,6 +118,12 @@ class MapFoliumCustom:
         self.add_layer(self.get_windy_tourist_layer())
         # Add MapantFR
         self.add_layer(self.get_mapant_layer())
+        # Add IGNE
+        self.add_layer(self.get_igne())
+        # Add IGNEL
+        self.add_layer(self.get_ignel())
+        # Add IGNEO
+        self.add_layer(self.get_igneo())
 
         # Now, add layers to the first map (m1)
         self.add_layer_m1(self.get_ign_mns_layer())
@@ -292,6 +304,57 @@ class MapFoliumCustom:
             max_zoom=self.max_zoom,
             tile_size=256,
             name="IGN_PCRS",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
+
+    def get_igne(self):
+        layer_url = self.layer_catalog.get_layer("IGN_ES")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN_ES",
+            min_zoom=0,
+            max_native_zoom=22,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_ES",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
+
+    def get_ignel(self):
+        layer_url = self.layer_catalog.get_layer("IGN_ES_LIDAR")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN_ES_LIDAR",
+            min_zoom=0,
+            max_native_zoom=22,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_ES_LIDAR",
+            visible=False,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_ortho
+
+    def get_igneo(self):
+        layer_url = self.layer_catalog.get_layer("IGN_ES_Ortho")
+        layer_ortho = TileLayer(
+            layer_url,
+            attr="IGN_ES_Ortho",
+            min_zoom=0,
+            max_native_zoom=22,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_ES_Ortho",
             visible=False,
             overlay=False,
             control=True,
