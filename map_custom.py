@@ -52,6 +52,8 @@ class MapFoliumCustom:
         self.add_layer(self.get_ign_mnt_layer())
         # Add MNS IGN
         self.add_layer(self.get_ign_mns_layer())
+        # Add MapantFR
+        self.add_layer(self.get_mapant_layer())
         # ----------------------------------------------------
         # Add OpenRailwayMap
         self.add_layer(self.get_openrailwaymap_layer(show=True))
@@ -108,6 +110,8 @@ class MapFoliumCustom:
         self.add_layer(self.get_cyclosm_layer())
         # Add Windy
         self.add_layer(self.get_windy_tourist_layer())
+        # Add MapantFR
+        self.add_layer(self.get_mapant_layer())
 
         # Now, add layers to the first map (m1)
         self.add_layer_m1(self.get_ign_mns_layer())
@@ -335,7 +339,7 @@ class MapFoliumCustom:
         layer_topo25 = TileLayer(
             url_topo,
             attr="IGN",
-            min_zoom=15,
+            min_zoom=6,
             max_native_zoom=16,
             max_zoom=self.max_zoom,
             tile_size=256,
@@ -456,6 +460,22 @@ class MapFoliumCustom:
             show=show,  # Show by default
         )
         return layer_openrailwaymap
+
+    def get_mapant_layer(self):
+        # Add Mapant layer
+        layer_url = self.layer_catalog.get_layer("MapantFR")
+        layer_mapant = TileLayer(
+            tiles=layer_url,
+            attr="Mapant",
+            min_zoom=2,
+            max_zoom=self.max_zoom,
+            name="MapantFR",
+            visible=True,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_mapant
 
     def get_waymarkedtrails_layer(self):
         # Add Waymarked Trails layer
