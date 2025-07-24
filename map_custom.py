@@ -37,6 +37,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_google_terrain_layer())
         # Add Google Roadmap as a base map
         self.add_layer(self.get_google_road_layer())
+        # Add IGN Plan V2
+        self.add_layer(self.get_ign_planv2())
+        # Add IGN Plan J+1
+        self.add_layer(self.get_ign_planj1())
         # Add OpenTopoMap
         self.add_layer(self.get_opentopomap_layer())
         # Add OpenCycleMap
@@ -48,6 +52,10 @@ class MapFoliumCustom:
         # ----------------------------------------------------
         # add IGN topo
         self.add_layer(self.get_ign_topo_layer())
+        # Add IGN EtatMajor
+        self.add_layer(self.get_etatmajor_ign())
+        # Add IGN Cassini
+        self.add_layer(self.get_cassini_ign())
         # add MNT IGN
         self.add_layer(self.get_ign_mnt_layer())
         # Add MNS IGN
@@ -60,6 +68,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_ignel())
         # Add IGNEO
         self.add_layer(self.get_igneo())
+        # Add IGNEC
+        self.add_layer(self.get_cadastre_ign())
+        # Add IGN Railway
+        self.add_layer(self.get_railway_ign())
         # ----------------------------------------------------
         # Add OpenRailwayMap
         self.add_layer(self.get_openrailwaymap_layer(show=True))
@@ -108,6 +120,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_google_terrain_layer())
         # Add Google Roadmap as a base map
         self.add_layer(self.get_google_road_layer())
+        # Add IGN Plan V2
+        self.add_layer(self.get_ign_planv2())
+        # Add IGN Plan J+1
+        self.add_layer(self.get_ign_planj1())
         # Add OpenTopoMap
         self.add_layer(self.get_opentopomap_layer())
         # Add OpenCycleMap
@@ -116,6 +132,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_cyclosm_layer())
         # Add Windy
         self.add_layer(self.get_windy_tourist_layer())
+        # Add IGN EtatMajor
+        self.add_layer(self.get_etatmajor_ign())
+        # Add IGN Cassini
+        self.add_layer(self.get_cassini_ign())
         # Add MapantFR
         self.add_layer(self.get_mapant_layer())
         # Add IGNE
@@ -124,6 +144,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_ignel())
         # Add IGNEO
         self.add_layer(self.get_igneo())
+        # Add IGNEC
+        self.add_layer(self.get_cadastre_ign())
+        # Add IGN Railway
+        self.add_layer(self.get_railway_ign())
 
         # Now, add layers to the first map (m1)
         self.add_layer_m1(self.get_ign_mns_layer())
@@ -294,6 +318,42 @@ class MapFoliumCustom:
 
         return layer_google_satellite
 
+    def get_ign_planv2(self):
+        layer_url = self.layer_catalog.get_layer("IGN PlanV2")
+        layer_google_satellite = TileLayer(
+            tiles=layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=19,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_PlanV2",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+
+        return layer_google_satellite
+
+    def get_ign_planj1(self):
+        layer_url = self.layer_catalog.get_layer("IGN PlanJ+1")
+        layer_google_satellite = TileLayer(
+            tiles=layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=18,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_PlanJ+1",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+
+        return layer_google_satellite
+
     def get_ign_pcrs_layer(self):
         layer_url = self.layer_catalog.get_layer("IGN_PCRS")
         layer_ortho = TileLayer(
@@ -344,6 +404,74 @@ class MapFoliumCustom:
             show=False,
         )
         return layer_ortho
+
+    def get_cadastre_ign(self):
+        layer_url = self.layer_catalog.get_layer("IGN Cadastre")
+        layer_cadastre = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=19,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_Cadastre",
+            visible=False,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_cadastre
+
+    def get_etatmajor_ign(self):
+        layer_url = self.layer_catalog.get_layer("IGN EtatMajor")
+        layer_cadastre = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=15,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_EtatMajor",
+            visible=False,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_cadastre
+
+    def get_cassini_ign(self):
+        layer_url = self.layer_catalog.get_layer("IGN Cassini")
+        layer_cadastre = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=14,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_Cassini",
+            visible=False,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_cadastre
+
+    def get_railway_ign(self):
+        layer_url = self.layer_catalog.get_layer("IGN Railway")
+        layer_cadastre = TileLayer(
+            layer_url,
+            attr="IGN",
+            min_zoom=0,
+            max_native_zoom=18,
+            max_zoom=self.max_zoom,
+            tile_size=256,
+            name="IGN_Railway",
+            visible=False,
+            overlay=True,
+            control=True,
+            show=False,
+        )
+        return layer_cadastre
 
     def get_igneo(self):
         layer_url = self.layer_catalog.get_layer("IGN_ES_Ortho")

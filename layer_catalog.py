@@ -49,6 +49,12 @@ class LayerCatalog:
                 "&TILEROW={y}"
                 "&TILECOL={x}"
             ),
+            "IGN PlanV2": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_19&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN PlanJ+1": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.MAPS.BDUNI.J1&STYLE=normal&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_18&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN Cassini": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=BNF-IGNF_GEOGRAPHICALGRIDSYSTEMS.CASSINI&STYLE=normal&FORMAT=image%2Fpng&TILEMATRIXSET=PM_6_14&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN EtatMajor": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40&STYLE=normal&FORMAT=image%2Fjpeg&TILEMATRIXSET=PM_6_15&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN Railway": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=TRANSPORTNETWORKS.RAILWAYS&STYLE=normal&FORMAT=image%2Fpng&TILEMATRIXSET=PM_6_18&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+            "IGN Cadastre": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=CADASTRALPARCELS.PARCELLAIRE_EXPRESS&STYLE=normal&FORMAT=image%2Fpng&TILEMATRIXSET=PM_0_19&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
             "OpenRailwayMap": "https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
             "WayMarkedTrails": "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
             "WindyTouristMap": "https://windytiles.mapy.cz/turist-m/{z}-{x}-{y}.png",
