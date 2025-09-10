@@ -65,6 +65,8 @@ class LayerCatalog:
             "IGN_ES": "https://www.ign.es/wmts/mapa-raster?layer=MTN&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/jpeg&TileMatrix={z}&TileCol={x}&TileRow={y}",
             "IGN_ES_LIDAR": "https://wmts-mapa-lidar.idee.es/lidar?Version=1.0.0&layer=EL.GridCoverageDSM&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Format=image/png&TileMatrix={z}&TileCol={x}&TileRow={y}",
             "IGN_ES_Ortho": "https://www.ign.es/wmts/pnoa-ma?layer=OI.OrthoimageCoverage&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/jpeg&TileMatrix={z}&TileCol={x}&TileRow={y}",
+            "SNCF_Simple": "https://openstreetmap.sncf.fr/tiles/sncf-nolabels/{z}/{x}/{y}.png",
+            "SNCF": "https://openstreetmap.sncf.fr/tiles/sncf/{z}/{x}/{y}.png",
         }
 
     def get_layers(self):

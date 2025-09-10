@@ -37,6 +37,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_google_terrain_layer())
         # Add Google Roadmap as a base map
         self.add_layer(self.get_google_road_layer())
+        # Add SNCF Simple
+        self.add_layer(self.get_sncf_simple_layer())
+        # Add SNCF
+        self.add_layer(self.get_sncf_layer())
         # Add IGN Plan V2
         self.add_layer(self.get_ign_planv2())
         # Add IGN Plan J+1
@@ -120,6 +124,10 @@ class MapFoliumCustom:
         self.add_layer(self.get_google_terrain_layer())
         # Add Google Roadmap as a base map
         self.add_layer(self.get_google_road_layer())
+        # Add SNCF Simple
+        self.add_layer(self.get_sncf_simple_layer())
+        # Add SNCF
+        self.add_layer(self.get_sncf_layer())
         # Add IGN Plan V2
         self.add_layer(self.get_ign_planv2())
         # Add IGN Plan J+1
@@ -582,6 +590,38 @@ class MapFoliumCustom:
             show=False,
         )
         return layer_opentopomap
+
+    def get_sncf_layer(self):
+        # Add OpenTopoMap layer
+        layer_url = self.layer_catalog.get_layer("SNCF")
+        layer_sncf = TileLayer(
+            layer_url,
+            attr="SNCF",
+            min_zoom=0,
+            max_zoom=self.max_zoom,
+            name="SNCF",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_sncf
+
+    def get_sncf_simple_layer(self):
+        # Add OpenTopoMap layer
+        layer_url = self.layer_catalog.get_layer("SNCF_Simple")
+        layer_sncf = TileLayer(
+            layer_url,
+            attr="SNCF",
+            min_zoom=0,
+            max_zoom=self.max_zoom,
+            name="SNCF_Simple",
+            visible=False,
+            overlay=False,
+            control=True,
+            show=False,
+        )
+        return layer_sncf
 
     def get_opencyclemap_layer(self):
         # Add OpenCycleMap layer
