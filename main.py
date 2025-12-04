@@ -1,12 +1,31 @@
 from io import BytesIO
-from map_custom import MapFoliumCustom
-from layer_catalog import LayerCatalog
+from mapfolium import LayerCatalog, FoliumMap
 from shapely.geometry import Polygon
 from streamlit_folium import st_folium
 import contextily as ctx
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import streamlit as st
+
+
+def save_image_example():
+    source_url = "https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png"
+
+    # Define w, s, e, for Marseille
+    w, s, e, n = 5.35, 43.2, 5.45, 43.4
+    ll = True  # Latitude and Longitude are used instead of Web Mercator
+    zoom = 15
+    n_connections = 8
+
+    # Get the tiles using contextily
+    img, extent = ctx.bounds2img(
+        w, s, e, n, zoom=zoom, source=source_url, ll=ll, n_connections=n_connections
+    )
+
+    # Save the image as a PNG file
+    plt.imsave("geo.png", img)
+    print("Image saved as geo.png")
+    return
 
 
 if __name__ == "__main__":
