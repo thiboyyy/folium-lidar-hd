@@ -17,7 +17,7 @@ Cartographies réalisées avec `folium` et `geopandas`
 - [Archéologie Ferroviaire (MaCarteIGN)](html/archeo.html)
 
 Sources pertinentes
-- [Archéologie Ferroviaire - Carte Métropole - MaCarteIGN](https://macarte.ign.fr/carte/024b0874d035fce0cf59f97ae2581257/Metropole-en-cours-)
+- [Archéologie Ferroviaire - Carte Métropole - MaCarteIGN - GeoJSONX](https://macarte.ign.fr/carte/024b0874d035fce0cf59f97ae2581257/Metropole-en-cours-)
 - [Trains Directs - Carte France Entière - Fichier PDF](https://trains-directs.fr/carte-france/)
 - [Atlas Ferroviaire - www.railwalker.de - Fichier KML](https://drive.google.com/file/d/1ILEhbcdx40JgF3IpYeuPg75gJpnlqyav/view)
 
@@ -27,3 +27,8 @@ Sources classiques
 - [CartoTchoo](https://carto.tchoo.net/)
 
   
+## Données retravaillées
+
+- Atlas Ferroviaire : [railwalker.gpkg](data/railwalker.gpkg)
+- Archéologie Ferroviaire : [archeo.gpkg](data/archeo.gpkg)
+- Inventaire des Tunnels : [itff.gpkg](data/itff.gpkg)
