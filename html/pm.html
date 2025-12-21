@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_770d3c5a0d18493d26c617c44e860d9c {
+                #map_e9814d6f53417bb851ca3fa85ab20d4f {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -55,14 +55,14 @@
 <body>
     
     
-            <div class="folium-map" id="map_770d3c5a0d18493d26c617c44e860d9c" ></div>
+            <div class="folium-map" id="map_e9814d6f53417bb851ca3fa85ab20d4f" ></div>
         
 </body>
 <script>
     
     
-            var map_770d3c5a0d18493d26c617c44e860d9c = L.map(
-                "map_770d3c5a0d18493d26c617c44e860d9c",
+            var map_e9814d6f53417bb851ca3fa85ab20d4f = L.map(
+                "map_e9814d6f53417bb851ca3fa85ab20d4f",
                 {
                     center: [46.7798, 2.24148],
                     crs: L.CRS.EPSG3857,
@@ -79,7 +79,7 @@
 
         
     
-            var tile_layer_3183381c3d4536ff48f3cae80664cd4b = L.tileLayer(
+            var tile_layer_3e5da0bcf4949080f11afdae83ad07e5 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -96,20 +96,20 @@
             );
         
     
-            tile_layer_3183381c3d4536ff48f3cae80664cd4b.addTo(map_770d3c5a0d18493d26c617c44e860d9c);
+            tile_layer_3e5da0bcf4949080f11afdae83ad07e5.addTo(map_e9814d6f53417bb851ca3fa85ab20d4f);
         
-    var pm_tiles_vector_cb6989ebbc3ef9d70ee4ef992058bdfb = protomapsL.leafletLayer(
+    var pm_tiles_vector_5843f0884015acfb971c56d56fd9514b = protomapsL.leafletLayer(
                 {
-                    "url":  'pmtiles/railway.pmtiles',
+                    "url":  'https://thiboyyy.github.io/folium-lidar-hd/pmtiles/railway.pmtiles',
                     
                         ...protomapsL.json_style({"layers": [{"paint": {"line-color": ["match", ["get", "railway"], "disused", "#ff0000", "abandoned", "#00aa00", "#999999"], "line-width": 4}, "source-layer": "railway", "type": "line"}]}), 
                     
                     ...{"attribution": "OSM Data"}
                 }
             )
-            pm_tiles_vector_cb6989ebbc3ef9d70ee4ef992058bdfb.addTo(map_770d3c5a0d18493d26c617c44e860d9c)
+            pm_tiles_vector_5843f0884015acfb971c56d56fd9514b.addTo(map_e9814d6f53417bb851ca3fa85ab20d4f)
     
-            pm_tiles_vector_cb6989ebbc3ef9d70ee4ef992058bdfb.addTo(map_770d3c5a0d18493d26c617c44e860d9c);
+            pm_tiles_vector_5843f0884015acfb971c56d56fd9514b.addTo(map_e9814d6f53417bb851ca3fa85ab20d4f);
         
 </script>
 </html>
