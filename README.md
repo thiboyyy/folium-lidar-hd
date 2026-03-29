@@ -10,6 +10,9 @@
 ## Données IGN 
 - [Hauteur des bâtiments sur un itinéraire (BDTopo + API Itinéraire)](html/hauteur_itineraire.html)
 
+## Urbex 
+- [Urbex spots (easyurbex.com)](html/urbex.html)
+
 ## Domaine ferroviaire
 Cartographies réalisées avec `folium` et `geopandas`
 - [Tunnels Ferroviaires (ITFF)](html/itff.html)
