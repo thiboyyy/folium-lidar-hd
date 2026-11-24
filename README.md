@@ -18,6 +18,7 @@ Cartographies réalisées avec `folium` et `geopandas`
 - [Tunnels Ferroviaires (ITFF)](html/itff.html)
 - [Atlas Ferroviaire (RailWalker)](html/atlas_ferroviaire.html)
 - [Archéologie Ferroviaire (MaCarteIGN)](html/archeo.html)
+- [Parcelles SNCF isolées (voisines à +10m)](html/sncf-isolated-map.html)
 
 Sources pertinentes
 - [Archéologie Ferroviaire - Carte Métropole - MaCarteIGN - GeoJSONX](https://macarte.ign.fr/carte/024b0874d035fce0cf59f97ae2581257/Metropole-en-cours-)
