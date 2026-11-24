@@ -36,6 +36,7 @@ Sources classiques
 - Atlas Ferroviaire : [railwalker.gpkg](data/railwalker.gpkg)
 - Archéologie Ferroviaire : [archeo.gpkg](data/archeo.gpkg)
 - Inventaire des Tunnels : [itff.gpkg](data/itff.gpkg)
+- Parcelles SNCF (données MAJIC) : [sncf.parquet](data/sncf.parquet)
 
 ## PMTiles
 
